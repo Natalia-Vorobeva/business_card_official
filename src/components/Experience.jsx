@@ -377,29 +377,51 @@ const Experience = () => {
           </div>
 
           {/* Статистика - Международная деятельность в цифрах */}
-          <div className="bg-gray-50/30 p-10 border border-gray-100 rounded-sm">
-            <div className="flex items-center mb-10">
-              <div className="w-12 h-px bg-gold mr-4"></div>
-              <h3 className="text-2xl font-medium text-navy">
-                {statsTitle}
-              </h3>
-            </div>
-            
-            {/* Новый блок статистики */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-              {stats.map((stat, index) => (
-                <div key={index} className="relative p-6 text-center group">
-                  <div className={`absolute inset-0 border border-gold/10 rounded-sm transform ${stat.rotation} group-hover:rotate-0 transition-transform duration-300`}></div>
-                  <p className="text-5xl font-serif font-light text-navy mb-3 relative">
-                    {stat.number}
-                    {stat.hasPlus && <span className="text-gold">+</span>}
-                  </p>
-                  <div className="w-16 h-px bg-gradient-to-r from-transparent via-gold to-transparent mx-auto mb-3"></div>
-                  <p className="text-gray-700 font-serif text-sm tracking-wide">{stat.label}</p>
-                </div>
-              ))}
-            </div>
+
+
+          <div className="bg-gray-50/30 p-4 sm:p-6 md:p-10 border border-gray-100 rounded-sm">
+  <div className="flex items-center mb-6 md:mb-10">
+    <div className="w-8 sm:w-10 md:w-12 h-px bg-gold mr-3 sm:mr-4"></div>
+    <h3 className="text-xl sm:text-2xl md:text-2xl font-medium text-navy">
+      {statsTitle}
+    </h3>
+  </div>
+  
+  {/* Адаптивный блок статистики - мобильный вариант с вертикальным расположением */}
+  <div className="flex flex-col sm:hidden space-y-4">
+    {stats.map((stat, index) => (
+      <div key={index} className="relative p-4 bg-white/50 rounded border border-gray-200/50">
+        <div className="flex items-center justify-between">
+          <div className="text-left">
+            <p className="text-3xl font-serif font-light text-navy">
+              {stat.number}
+              {stat.hasPlus && <span className="text-gold text-lg">+</span>}
+            </p>
+            <div className="w-12 h-px bg-gold/50 my-2"></div>
           </div>
+          <p className="text-gray-700 font-serif text-sm tracking-wide text-right max-w-[140px]">
+            {stat.label}
+          </p>
+        </div>
+      </div>
+    ))}
+  </div>
+  
+  {/* Десктопный вариант */}
+  <div className="hidden sm:grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+    {stats.map((stat, index) => (
+      <div key={index} className="relative p-4 md:p-6 text-center group">
+        <div className={`absolute inset-0 border border-gold/10 rounded-sm transform ${stat.rotation} group-hover:rotate-0 transition-transform duration-300`}></div>
+        <p className="text-4xl md:text-5xl font-serif font-light text-navy mb-3 relative">
+          {stat.number}
+          {stat.hasPlus && <span className="text-gold">+</span>}
+        </p>
+        <div className="w-12 md:w-16 h-px bg-gradient-to-r from-transparent via-gold to-transparent mx-auto mb-3"></div>
+        <p className="text-gray-700 font-serif text-sm tracking-wide">{stat.label}</p>
+      </div>
+    ))}
+  </div>
+</div>
 
           {/* Дополнительная информация */}
           <div className="mt-16 pt-12 border-t border-gray-200">
