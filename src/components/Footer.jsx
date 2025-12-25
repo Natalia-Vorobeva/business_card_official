@@ -6,7 +6,7 @@ import { translationsFooter } from '../constants/constants';
 const Footer = () => {
   const { language, t } = useLanguage();
 
-	  const {
+  const {
     name,
     title,
     description,
@@ -39,18 +39,18 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-navy py-16 border-t border-light">
-      <div className="section-padding">
+    <footer className="bg-navy py-12 md:py-16 border-t border-light">
+      <div className="px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-12 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-8 md:mb-12">
             {/* Колонка 1: Логотип и описание */}
             <div>
-              <div className="flex items-center space-x-3 mb-6">
-                <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-3 mb-4 md:mb-6">
+                <div className="flex items-center space-x-3">
                   <Logo />
                 </div>
                 <div>
-                  <h3 className="text-lg font-medium text-white">{name}</h3>
+                  <h3 className="text-base md:text-lg font-medium text-white">{name}</h3>
                   <p className="text-gray-400 text-xs font-light">{title}</p>
                 </div>
               </div>
@@ -61,8 +61,8 @@ const Footer = () => {
 
             {/* Колонка 2: Разделы */}
             <div>
-              <h4 className="text-white font-medium mb-6">{sectionsTitle}</h4>
-              <ul className="space-y-3">
+              <h4 className="text-white font-medium mb-4 md:mb-6">{sectionsTitle}</h4>
+              <ul className="space-y-2 md:space-y-3">
                 {sections.map((section) => (
                   <li key={section.href}>
                     <a
@@ -86,38 +86,38 @@ const Footer = () => {
 
             {/* Колонка 3: Контакты */}
             <div>
-              <h4 className="text-white font-medium mb-6">{contactsTitle}</h4>
-              <ul className="space-y-3">
+              <h4 className="text-white font-medium mb-4 md:mb-6">{contactsTitle}</h4>
+              <ul className="space-y-2 md:space-y-3">
                 <li className="text-gray-400 font-light text-sm flex items-start">
                   <svg className="w-4 h-4 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89-3.12a2 2 0 012.22 0L21 8m-18 0v9a2 2 0 002 2h14a2 2 0 002-2V8m-18 0l6-3.5" />
                   </svg>
-                  {email}
+                  <span className="break-words">{email}</span>
                 </li>
                 <li className="text-gray-400 font-light text-sm flex items-start">
                   <svg className="w-4 h-4 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
-                  {phone}
+                  <span>{phone}</span>
                 </li>
                 <li className="text-gray-400 font-light text-sm flex items-start">
                   <svg className="w-4 h-4 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
-                  {address}
+                  <span className="break-words">{address}</span>
                 </li>
               </ul>
             </div>
 
             {/* Колонка 4: Международное представительство */}
             <div>
-              <h4 className="text-white font-medium mb-6">{representationTitle}</h4>
-              <div className="flex space-x-4">
+              <h4 className="text-white font-medium mb-4 md:mb-6">{representationTitle}</h4>
+              <div className="flex space-x-3 md:space-x-4">
                 {languageFlags.map((flag) => (
                   <div
                     key={flag.code}
-                    className={`w-10 h-6 rounded-sm flex items-center justify-center transition-all duration-300 ${
+                    className={`w-9 h-6 md:w-10 md:h-6 rounded-sm flex items-center justify-center transition-all duration-300 ${
                       language === flag.code 
                         ? 'bg-gold/20 border border-gold/40' 
                         : 'bg-gray-800 hover:bg-gray-700'
@@ -133,8 +133,8 @@ const Footer = () => {
               </div>
               
               {/* Дополнительная информация о языках */}
-              <div className="mt-6 pt-6 border-t border-gray-800">
-                <p className="text-gray-500 text-xs font-light">
+              <div className="mt-4 md:mt-6 pt-4 md:pt-6 border-t border-gray-800">
+                <p className="text-gray-500 text-xs font-light leading-relaxed">
                   {language === 'ru' && 'Рабочие языки: русский, английский, французский, немецкий'}
                   {language === 'en' && 'Working languages: Russian, English, French, German'}
                   {language === 'fr' && 'Langues de travail: russe, anglais, français, allemand'}
@@ -144,9 +144,9 @@ const Footer = () => {
           </div>
 
           {/* Нижняя часть футера */}
-          <div className="pt-8 border-t border-light">
+          <div className="pt-6 md:pt-8 border-t border-light">
             <div className="flex flex-col md:flex-row justify-between items-center">
-              <p className="text-gray-500 text-sm font-light mb-4 md:mb-0">
+              <p className="text-gray-500 text-xs md:text-sm font-light mb-3 md:mb-0 text-center md:text-left">
                 {copyright}
               </p>
               <p className="text-gray-500 text-xs font-light text-center max-w-md">
