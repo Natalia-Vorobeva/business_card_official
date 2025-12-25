@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { translationsContacts } from '../constants/constants';
+import CustomSelect from './CustomSelect';
 
 const Contact = () => {
 	const { language, t } = useLanguage();
@@ -52,6 +53,14 @@ const Contact = () => {
 		close,
 		sending
 	} = t(translationsContacts);
+
+	// const subjectOptions = [
+	// 	{ value: '', label: selectSubject },
+	// 	{ value: 'cooperation', label: cooperation },
+	// 	{ value: 'invitation', label: invitation },
+	// 	{ value: 'consultation', label: consultation },
+	// 	{ value: 'other', label: other },
+	// ];
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -226,30 +235,23 @@ const Contact = () => {
 										/>
 									</div>
 
-									{/* Тема - улучшенный select */}
+									{/* Тема - улучшенный select с кастомной стрелкой */}
 									<div className="relative">
 										<label className="block text-gray-300 font-light mb-2 text-sm sm:text-base">{subject}</label>
-										<div className="relative">
-											<select
-												name="subject"
-												value={formData.subject}
-												onChange={handleChange}
-												className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-gray-900/50 border border-gray-700/50 text-white focus:border-gold/70 focus:ring-1 focus:ring-gold/20 outline-none transition-all duration-300 rounded text-sm sm:text-base appearance-none pr-10"
-												required
-											>
-												<option value="" className="text-gray-500 bg-gray-800">{selectSubject}</option>
-												<option value="cooperation" className="text-white bg-gray-800">{cooperation}</option>
-												<option value="invitation" className="text-white bg-gray-800">{invitation}</option>
-												<option value="consultation" className="text-white bg-gray-800">{consultation}</option>
-												<option value="other" className="text-white bg-gray-800">{other}</option>
-											</select>
-											{/* Кастомная стрелка для select */}
-											<div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-												<svg className="w-4 h-4 sm:w-5 sm:h-5 text-gold/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-													<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-												</svg>
-											</div>
-										</div>
+										<CustomSelect
+											name="subject"
+											value={formData.subject}
+											onChange={handleChange}
+											options={[
+												{ value: '', label: selectSubject },
+												{ value: 'cooperation', label: cooperation },
+												{ value: 'invitation', label: invitation },
+												{ value: 'consultation', label: consultation },
+												{ value: 'other', label: other },
+											]}
+											placeholder={selectSubject}
+											required
+										/>
 									</div>
 
 									{/* Сообщение */}
